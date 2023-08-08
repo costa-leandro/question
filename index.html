@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mensagem para Andressinha</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+    body {
+      background-image: url('https://img.icons8.com/?size=40&id=upd5xh7hPe0R&format=png');
+      background-repeat: repeat;
+      background-color: #e24f4f; 
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'VT323', monospace, Arial, sans-serif;
+    }
+    
+    .mensagem {
+      background-color: #FFFFFF; 
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .botoes {
+      margin-top: 20px;
+    }
+
+    .botao {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 0 5px;
+      font-family: 'VT323', monospace, Arial, sans-serif;
+    }
+
+    .botao:hover {
+      opacity: 0.8;
+    }
+
+    .botao-sim {
+      background-color: #4CAF50; 
+    }
+
+    .botao-nao {
+      background-color: #FF0000; 
+      color: white;
+    }
+
+    .progresso {
+      background-color: #f2f2f2;
+      border-radius: 5px;
+      width: 100%;
+      height: 20px;
+      margin-top: 20px;
+      overflow: hidden;
+    }
+
+    .barra-progresso {
+      background-color: #4CAF50;
+      height: 100%;
+      width: 0;
+    }
+
+    .mensagem-progresso {
+      margin-top: 10px;
+    }
+
+    .mensagem-nova {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .mensagem-nova.show {
+      display: block;
+    }
+
+    .eu-amo-voce {
+      font-size: 30px;
+      margin-top: 10px;
+    }
+    .imagem-opaca {
+    opacity: 0.8; /* Ajuste o valor conforme necessário */
+  }
+  .texto-sobre-imagem {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 80%;
+    z-index: 2; /* Para garantir que o texto esteja acima da imagem */
+  }
+
+  </style>
+</head>
+<body>
+  <div class="mensagem">
+    <h1>Oi, Andressinha!</h1>
+    <p>Vai sentir falta do carneirinho?</p>
+    <div class="botoes">
+      <button class="botao botao-sim" onclick="responder('Sim')">Sim</button>
+      <button class="botao botao-nao" onclick="responder('Não')" id="botaoNao">Não</button>
+    </div>
+    <div class="progresso">
+      <div class="barra-progresso" id="barra"></div>
+    </div>
+    <div class="mensagem-progresso" id="mensagem-progresso"></div>
+    <div class="mensagem-nova" id="mensagem-nova">
+      <h1>Ops... algo deu errado :(</h1>
+      <p class="eu-amo-voce">Infelizmente, não tenho como resolver isso...</p>
+      <p>Tente resolver clicando no botão abaixo:</p>
+      
+      <button class="botao botao-sim" onclick="openImage()">Clique aqui!</button>
+
+    </div>
+  </div>
+
+  <script>
+    function responder(resposta) {
+      if (resposta === 'Sim') {
+        document.getElementById("mensagem-progresso").innerText = "Calma, estou resolvendo tudo...";
+        animateProgressBar();
+        removeBotaoNao();
+      } else if (resposta === 'Não') {
+        alert('Eu não esperava por isso...');
+      }
+    }
+
+    function animateProgressBar() {
+      var barra = document.getElementById("barra");
+      var mensagemProgresso = document.getElementById("mensagem-progresso");
+      var mensagemNova = document.getElementById("mensagem-nova");
+      var width = 0;
+      var interval = setInterval(frame, 100);
+
+      function frame() {
+        if (width >= 100) {
+          clearInterval(interval);
+          mensagemProgresso.innerText = "";
+          mensagemNova.classList.add("show");
+        } else {
+          width++;
+          barra.style.width = width + '%';
+        }
+        mensagemProgresso.innerText = "Calma, estou resolvendo tudo...";
+      }
+    }
+
+    function removeBotaoNao() {
+      var botaoNao = document.getElementById("botaoNao");
+      botaoNao.style.display = "none";
+    }
+
+
+    function openImage() {
+    // Cria um elemento de imagem
+    var imagem = document.createElement("img");
+    imagem.src = "./images/algodao.jpeg"; // Substitua pelo caminho da sua imagem
+    imagem.classList.add("imagem-opaca"); // Aplica a classe para tornar a imagem opaca
+
+    // Cria um elemento de div para o texto sobre a imagem
+    var textoDiv = document.createElement("div");
+    textoDiv.classList.add("texto-sobre-imagem"); // Aplica a classe para o estilo do texto
+    var texto = `
+      Não esperava que esse momento iria chegar... Saiba que você irá fazer uma imensa falta e nesse momento meu coração está em pedaços... Vou sentir falta de assumir os chamados pegando fogo, de te ajudar, de pedir tua ajuda e você pegar na minha mão até a solução final.  Peço desculpas pelas vezes que posso ter errado, mas saiba que sempre tentei dar o meu melhor e te ajudar ao máximo possível. Sei que errei várias vezes, mas em nenhuma delas foi com o intuito de fazer mal ou prejudicar. Tanto que, aprendi muito com os erros graças a você. Desde que entrei, você me deu todo o apoio que precisava e me ajudou a me tornar um bom profissional e uma pessoa melhor.. Muito do que vou fazer daqui pra frente vai ser para tentar continuar seu legado. Obviamente, não chegarei aos teus pés, pois você fez tudo até aqui com muita excelência, mas você sempre será meu exemplo e tentarei seguir tudo o que consegui aprender contigo. Irei fazer de tudo, para que um dia você possa se orgulhar muito do teu "fio".
+      <br><br>
+      Nesse momento, o que me conforta é saber que você estará em um lugar melhor para ti.
+      <br><br>
+      Você foi um presente que Deus colocou em minha vida e eu amo muito a amizade que a gente construiu em tão pouco tempo. Foram alguns meses e você se tornou uma das pessoas mais importantes que eu tenho por perto. Gostaria que soubesse que independente de onde estiver, eu sempre estarei aqui e jamais deixarei de ser teu "fio", "caneirinho" ou "leonardo". Você foi realmente uma nova mãe que surgiu na minha vida e eu sou muito grato por isso.
+      <br><br>
+      Tua presença irá fazer muita falta aqui. Que você esteja sempre comigo e eu com você, em todos os momentos bons e ruins da vida, assim como foi aqui na PLSS. Conte sempre comigo, mamis. Eu amo você <3
+    `;
+
+    textoDiv.innerHTML = texto;
+
+    // Cria um elemento de div para exibir a imagem e o texto em tela cheia
+    var contentDivFullScreen = document.createElement("div");
+    contentDivFullScreen.style.position = "fixed";
+    contentDivFullScreen.style.top = "0";
+    contentDivFullScreen.style.left = "0";
+    contentDivFullScreen.style.width = "100%";
+    contentDivFullScreen.style.height = "100%";
+    contentDivFullScreen.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+    contentDivFullScreen.style.display = "flex";
+    contentDivFullScreen.style.justifyContent = "center";
+    contentDivFullScreen.style.alignItems = "center";
+
+    // Adiciona a imagem e o texto à div de tela cheia
+    contentDivFullScreen.appendChild(imagem);
+    contentDivFullScreen.appendChild(textoDiv);
+
+    // Adiciona a div do conteúdo ao corpo da página
+    document.body.appendChild(contentDivFullScreen);
+
+    // Fecha o conteúdo ao clicar nele
+    contentDivFullScreen.addEventListener("click", function () {
+      document.body.removeChild(contentDivFullScreen);
+    });
+  }
+
+
+  </script>
+</body>
+</html>
